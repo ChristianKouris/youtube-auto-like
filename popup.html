@@ -1,0 +1,53 @@
+<html>
+
+<head>
+  <title>Youtube Auto Like Settings</title>
+  <style>
+    body {
+      min-width: 600px;
+      font-size: 15px;
+    }
+    label {
+      display: block;
+    }
+    .debug {
+      font-size: 12px;
+    }
+    .debug * {
+      display: inline;
+    }
+    @media (prefers-color-scheme: dark) {
+      body, input {
+          background-color: #333;
+          color: #FFF;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1 style="display:flex; align-items: center; justify-content: center;">
+    <img src="/icons/icon48.png" width="48" height="48" style="margin-right:2rem">
+    Youtube Auto Like Settings
+    <img src="/icons/icon48.png" width="48" height="48" style="margin-left:2rem">
+  </h1>
+
+  <form id="form">
+    <label for="seconds">Minimum seconds needed to click the Like Button:</label>
+    <input type="number" name="seconds" id="seconds" min="0" style="display:block;" />
+
+    <label for="percentage">Minimum percentage of video watched needed to click the Like Button:</label>
+    <div>
+      <input type="range" name="pct-range" id="pct-range" />
+      <input type="number" name="percentage" id="percentage" min="0" max="100"/>
+    </div>
+    <input type="submit" id="save-settings" value="Save Settings">
+  </form>
+  <div class="debug">
+    <label for="debug-checkbox">Enable Debug Printing: </label>
+    <input type="checkbox" name="debug-checkbox" id="debug-checkbox" />
+  </div>
+  <script src="popup.js" type="module"></script>
+</body>
+
+</html>
