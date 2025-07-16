@@ -1,5 +1,6 @@
 const MINIMUM_SECONDS_DEFAULT = 600; //10 minutes
 const MINIMUM_PERCENTAGE_DEFAULT = 50;
+const LIKE_BUTTON_CLASS_NAME = 'ytLikeButtonViewModelHost';
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 
@@ -26,7 +27,8 @@ function addLike(details, min_seconds, min_percentage, is_debug) {
     let currrent_time = details_url.searchParams.get('et');
     currrent_time = Number.parseFloat(currrent_time instanceof String ? currrent_time.split(',').pop() : currrent_time);
     let total_time = Number.parseFloat(details_url.searchParams.get('len'));
-    let like_button = document.getElementsByClassName('ytLikeButtonViewModelHost').item(0)?.firstChild?.firstChild?.firstChild;
+    // This is unironically the best way I can think of to get the like button to press.
+    let like_button = document.getElementsByClassName(LIKE_BUTTON_CLASS_NAME).item(0)?.firstChild?.firstChild?.firstChild;
     let min_threshold = Math.min(min_seconds, min_percentage * total_time / 100);
     if (is_debug) {
         printDebugInfo(currrent_time, total_time, min_threshold, like_button)
